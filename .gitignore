@@ -4,6 +4,3 @@ dist
 .env.*
 !.env.example
 .DS_Store
-
-# Compiled SugarCube HTML (generated from Twee source)
-/public/stories/
