@@ -499,3 +499,102 @@ html[dir='rtl'] .home-toolbar {
     margin: 13px 0 0;
   }
 }
+
+
+/* SugarCube story-engine developer preview */
+.engine-preview {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  min-height: 100vh;
+  padding: clamp(14px, 3vw, 28px);
+  color: #f5edf5;
+  background: #11101a;
+}
+.engine-preview__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.engine-preview__header > div {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+}
+.engine-preview__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #c9b9d3;
+  text-decoration: none;
+  font-size: 13px;
+}
+.engine-preview__eyebrow {
+  color: #b99acb;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+.engine-preview__header h1 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-size: clamp(17px, 2vw, 22px);
+}
+.engine-preview__runtime {
+  min-height: 420px;
+  overflow: hidden;
+  border: 1px solid rgba(224, 198, 239, .2);
+  border-radius: 18px;
+  background: #f8f4f0;
+}
+.sugarcube-frame {
+  display: block;
+  width: 100%;
+  min-height: min(72vh, 760px);
+  border: 0;
+  background: #f8f4f0;
+}
+.engine-preview__events {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  color: #c8bdcf;
+  font-size: 11px;
+}
+.engine-preview__events > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #d9c4e8;
+}
+.engine-preview__events p {
+  margin: 0;
+}
+.engine-preview__events strong {
+  color: #fff;
+  font-weight: 650;
+}
+@media (max-width: 600px) {
+  .engine-preview {
+    gap: 10px;
+    padding: 10px;
+  }
+  .engine-preview__header {
+    align-items: flex-start;
+  }
+  .engine-preview__runtime {
+    min-height: 60vh;
+    border-radius: 12px;
+  }
+  .sugarcube-frame {
+    min-height: 70vh;
+  }
+  .engine-preview__events {
+    display: grid;
+    gap: 7px;
+  }
+}

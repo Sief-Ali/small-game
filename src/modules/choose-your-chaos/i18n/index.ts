@@ -2,6 +2,7 @@ import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
 import ar from './locales/ar.json'
+import arStory from '../../../../stories/the-city-that-forgot-dawn/ar/story.json'
 
 const LANGUAGE_KEY = 'choose-your-chaos-language'
 
@@ -32,7 +33,7 @@ void i18next
   .init({
     resources: {
       en: { translation: en },
-      ar: { translation: ar }
+      ar: { translation: { ...ar, story: arStory } }
     },
     lng: getInitialLanguage(),
     fallbackLng: 'en',

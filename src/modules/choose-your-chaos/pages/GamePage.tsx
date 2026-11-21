@@ -4,7 +4,6 @@ import { useStoryGame } from '../hooks/useStoryGame'
 
 export default function GamePage() {
   const game = useStoryGame()
-
   return (
     <main className="app-shell">
       {game.screen === 'home' ? (
