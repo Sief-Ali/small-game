@@ -329,3 +329,34 @@ button:focus-visible { outline: 3px solid #f2cbff; outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+
+.embedded-question {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, white);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--accent) 9%, white);
+}
+.question-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+.embedded-question p {
+  margin: 0;
+  color: #493a53;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  line-height: 1.4;
+}
+.embedded-question small {
+  display: block;
+  margin-top: 7px;
+  color: #827283;
+  font-size: 10px;
+  line-height: 1.5;
+}
