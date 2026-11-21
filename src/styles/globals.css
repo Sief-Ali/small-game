@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
 
 :root {
   font-family: 'DM Sans', sans-serif;
@@ -359,4 +359,143 @@ button:focus-visible { outline: 3px solid #f2cbff; outline-offset: 4px; }
   color: #827283;
   font-size: 10px;
   line-height: 1.5;
+}
+
+
+/* Language switcher */
+.home-toolbar {
+  position: absolute;
+  z-index: 8;
+  top: 19px;
+  right: 21px;
+  direction: ltr;
+}
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 999px;
+  color: #fff7fc;
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(12px);
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  direction: ltr;
+  transition: background .16s, transform .16s;
+}
+.language-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.19);
+}
+.story-topline .language-toggle {
+  flex: 0 0 auto;
+}
+
+/* Arabic uses natural RTL reading order, layout and typography */
+html[dir='rtl'] body {
+  font-family: 'Noto Sans Arabic', 'DM Sans', sans-serif;
+}
+html[dir='rtl'] .home-title,
+html[dir='rtl'] .story-title {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  letter-spacing: 0;
+  line-height: 1.45;
+}
+html[dir='rtl'] .home-eyebrow {
+  letter-spacing: .5px;
+}
+html[dir='rtl'] .home-description,
+html[dir='rtl'] .home-facts,
+html[dir='rtl'] .home-actions,
+html[dir='rtl'] .home-save-note {
+  direction: rtl;
+}
+html[dir='rtl'] .story-layout {
+  direction: rtl;
+}
+html[dir='rtl'] .story-column {
+  margin-left: 0;
+  margin-right: -54px;
+}
+html[dir='rtl'] .story-panel {
+  text-align: right;
+}
+html[dir='rtl'] .story-kicker {
+  letter-spacing: .5px;
+}
+html[dir='rtl'] .story-copy {
+  line-height: 2;
+}
+html[dir='rtl'] .memory-line {
+  border-left: 0;
+  border-right: 2px solid var(--accent);
+  border-radius: 9px 0 0 9px;
+}
+html[dir='rtl'] .choice-panel {
+  margin-left: 0;
+  margin-right: 34px;
+}
+html[dir='rtl'] .choice-heading {
+  letter-spacing: .5px;
+}
+html[dir='rtl'] .story-choice {
+  text-align: right;
+}
+html[dir='rtl'] .choice-arrow {
+  right: auto;
+  left: 12px;
+}
+html[dir='rtl'] .choice-number {
+  right: auto;
+  left: 13px;
+}
+html[dir='rtl'] .ending-overline {
+  letter-spacing: .5px;
+}
+html[dir='rtl'] .ending-actions {
+  margin-left: 0;
+  margin-right: auto;
+}
+html[dir='rtl'] .story-footer {
+  letter-spacing: .5px;
+}
+html[dir='rtl'] .home-toolbar {
+  right: auto;
+  left: 21px;
+}
+
+@media (max-width: 850px) {
+  html[dir='rtl'] .story-column {
+    margin-right: -35px;
+  }
+}
+@media (max-width: 650px) {
+  .home-toolbar {
+    top: 15px;
+    right: 14px;
+  }
+  html[dir='rtl'] .home-toolbar {
+    right: auto;
+    left: 14px;
+  }
+  .story-topline .language-toggle {
+    min-height: 35px;
+    padding: 0 10px;
+    gap: 6px;
+    font-size: 10px;
+  }
+  html[dir='rtl'] .story-column {
+    margin: -38px 8px 0;
+  }
+  html[dir='rtl'] .choice-panel {
+    margin: 12px 0 0;
+  }
+  html[dir='rtl'] .ending-actions {
+    margin: 13px 0 0;
+  }
 }
