@@ -26,8 +26,12 @@ function run(args) {
   return [result.stdout, result.stderr].filter(Boolean).join('\n')
 }
 
-const formats = run(['--list-formats'])
-if (!formats.includes('sugarcube-2')) {
+const formats = run(['--list-formats-csv'])
+const hasSugarCube = formats
+  .split(/\r?\n/)
+  .some(line => line.split(',', 1)[0] === 'sugarcube-2')
+
+if (!hasSugarCube) {
   throw new Error(
     'Tweego is installed, but SugarCube 2 was not found. Install the SugarCube 2 story format in a Tweego storyformats directory. See docs/story-authoring.md.'
   )
