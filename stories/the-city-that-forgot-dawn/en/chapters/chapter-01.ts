@@ -1,4 +1,4 @@
-import type { StoryScene } from '../../../../src/modules/choose-your-chaos/types'
+import type { StoryScene } from '../../../../src/modules/story-engine/types'
 import { flags, signals } from '../helpers'
 
 export const chapter01: Record<string, StoryScene> = {
