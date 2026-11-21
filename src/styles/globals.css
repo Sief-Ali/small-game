@@ -499,3 +499,79 @@ html[dir='rtl'] .home-toolbar {
     margin: 13px 0 0;
   }
 }
+
+/* The City That Forgot Dawn — chapter background references */
+.atmosphere-bg-iron-street-dusk { --sky-deep:#201d37; --sky-mid:#55435e; --sky-light:#b47c77; --glow:#e6b17c; --accent:#d5a16f; }
+.atmosphere-bg-night-market { --sky-deep:#291a33; --sky-mid:#694154; --sky-light:#b16d64; --glow:#f2c17b; --accent:#dcaa73; }
+.atmosphere-bg-courier-stall { --sky-deep:#251d35; --sky-mid:#65506a; --sky-light:#b78b7e; --glow:#f0c28b; --accent:#d19b78; }
+.atmosphere-bg-foundry-alley { --sky-deep:#201b2d; --sky-mid:#57434a; --sky-light:#a56c55; --glow:#e5a45f; --accent:#c87a55; }
+.atmosphere-bg-market-gate { --sky-deep:#27203a; --sky-mid:#65536a; --sky-light:#bd8b83; --glow:#f4ca8e; --accent:#d6a078; }
+.atmosphere-bg-crossroads-lanterns { --sky-deep:#20223b; --sky-mid:#55506c; --sky-light:#ae8d83; --glow:#eac18a; --accent:#cf9a72; }
+.atmosphere-bg-foundry-floor { --sky-deep:#251a29; --sky-mid:#644044; --sky-light:#bd7958; --glow:#ffb45c; --accent:#d77d4c; }
+.atmosphere-bg-reserve-power { --sky-deep:#211e31; --sky-mid:#5a4856; --sky-light:#a77d68; --glow:#e8b36e; --accent:#cb9364; }
+.atmosphere-bg-steam-conduit { --sky-deep:#1b2436; --sky-mid:#425365; --sky-light:#87969a; --glow:#d5b98d; --accent:#a4a89a; }
+.atmosphere-bg-belfry-bells { --sky-deep:#211e3c; --sky-mid:#4f4b70; --sky-light:#a4879a; --glow:#e8be7e; --accent:#c9a078; }
+.atmosphere-bg-meridian-climb { --sky-deep:#20243e; --sky-mid:#4d607e; --sky-light:#9b9caa; --glow:#e7c28f; --accent:#b1a1a0; }
+.atmosphere-bg-vault-door { --sky-deep:#211f39; --sky-mid:#4c4d6b; --sky-light:#9e8b9c; --glow:#eac58a; --accent:#c4a27c; }
+.atmosphere-bg-pendulum-spin { --sky-deep:#211b32; --sky-mid:#57405c; --sky-light:#b17a6c; --glow:#f1ba70; --accent:#d28e5e; }
+.atmosphere-bg-secret-vault { --sky-deep:#171a31; --sky-mid:#3b425d; --sky-light:#8e91a1; --glow:#e9d39a; --accent:#c7b47f; }
+.atmosphere-bg-horizon-dawn { --sky-deep:#33304a; --sky-mid:#8a6471; --sky-light:#dba17d; --glow:#ffe1a1; --accent:#d69a77; }
+.atmosphere-bg-gilded-twilight { --sky-deep:#30223c; --sky-mid:#80536b; --sky-light:#c58b83; --glow:#f4ce8a; --accent:#d7a36f; }
+.atmosphere-bg-first-sunrise { --sky-deep:#57334a; --sky-mid:#c16d70; --sky-light:#f4bc85; --glow:#fff0af; --accent:#dc956b; }
+
+.story-state-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  width: min(100%, 1250px);
+  margin: -6px auto 18px;
+  color: rgba(255, 247, 238, .72);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+.story-state-strip span {
+  padding: 7px 11px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: rgba(23,20,42,.26);
+}
+.story-state-strip strong {
+  color: #ffe0a8;
+  font-size: 11px;
+}
+.passage-type-label {
+  display: inline-flex;
+  margin: -7px 0 15px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, white);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.no-choices-note {
+  margin: 2px;
+  color: rgba(243,230,245,.7);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (max-width: 650px) {
+  .story-state-strip {
+    justify-content: flex-start;
+    gap: 6px;
+    margin: -3px auto 12px;
+  }
+  .story-state-strip span {
+    padding: 6px 8px;
+    font-size: 8px;
+  }
+  .story-state-strip strong {
+    font-size: 10px;
+  }
+}

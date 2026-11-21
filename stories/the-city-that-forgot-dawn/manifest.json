@@ -1,0 +1,302 @@
+{
+  "id": "the-city-that-forgot-dawn",
+  "title": "The City That Forgot Dawn",
+  "version": "2.0.0",
+  "languages": [
+    "en",
+    "ar"
+  ],
+  "startPassageId": "Act1_Ch1_01_Arrival",
+  "totalActs": 3,
+  "totalChapters": 7,
+  "acts": [
+    {
+      "id": "act-1",
+      "title": "Act I: Perpetual Dusk",
+      "chapters": [
+        "ch-1",
+        "ch-2",
+        "ch-3"
+      ]
+    },
+    {
+      "id": "act-2",
+      "title": "Act II: The Clockwork Horizon",
+      "chapters": [
+        "ch-4",
+        "ch-5"
+      ]
+    },
+    {
+      "id": "act-3",
+      "title": "Act III: Sovereign of the First Ray",
+      "chapters": [
+        "ch-6",
+        "ch-7"
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "ch-1",
+      "actId": "act-1",
+      "title": "Chapter 1: Lanterns on Iron Street"
+    },
+    {
+      "id": "ch-2",
+      "actId": "act-1",
+      "title": "Chapter 2: The Foundry Below the Bell"
+    },
+    {
+      "id": "ch-3",
+      "actId": "act-1",
+      "title": "Chapter 3: Whispers in the Steam Conduit"
+    },
+    {
+      "id": "ch-4",
+      "actId": "act-2",
+      "title": "Chapter 4: The Observatory Vault"
+    },
+    {
+      "id": "ch-5",
+      "actId": "act-2",
+      "title": "Chapter 5: Meridian Glass & Brass"
+    },
+    {
+      "id": "ch-6",
+      "actId": "act-3",
+      "title": "Chapter 6: The Sun-Dial Court"
+    },
+    {
+      "id": "ch-7",
+      "actId": "act-3",
+      "title": "Chapter 7: First Light or Endless Night"
+    }
+  ],
+  "quests": [
+    {
+      "id": "q-find-pendulum",
+      "title": "Mend the Solar Pendulum",
+      "description": "Locate the missing brass pendulum assembly and restore its calibration for the Meridian Observatory.",
+      "hidden": false,
+      "objectives": [
+        {
+          "id": "obj-search-market",
+          "text": "Investigate the Night Market stalls for leads",
+          "count": 1
+        },
+        {
+          "id": "obj-recover-pendulum",
+          "text": "Recover the Solar Pendulum Core from the foundry",
+          "count": 1
+        },
+        {
+          "id": "obj-align-escapement",
+          "text": "Calibrate the meridian escapement rings",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "score": 40,
+        "item": "Pendulum Calibration Seal"
+      }
+    },
+    {
+      "id": "q-keep-lanterns",
+      "title": "Keepers of the Coal Flame",
+      "description": "Protect lower-ward street lighting during mechanical transitions so no district falls into panic.",
+      "hidden": true,
+      "objectives": [
+        {
+          "id": "obj-oil-ledger",
+          "text": "Acquire the lower-ward oil ration ledger",
+          "count": 1
+        },
+        {
+          "id": "obj-stabilize-feeder",
+          "text": "Stabilize the reserve coal-gas feeder line",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "score": 30,
+        "item": "Syndicate Lamp Pass"
+      }
+    },
+    {
+      "id": "q-unseal-chronometer",
+      "title": "The Founders' Forgotten Hour",
+      "description": "Piece together the pre-dusk astronomical cipher hidden inside the city's oldest clocks.",
+      "hidden": true,
+      "objectives": [
+        {
+          "id": "obj-cipher-key",
+          "text": "Obtain the Brass Cipher Key",
+          "count": 1
+        },
+        {
+          "id": "obj-archive-log",
+          "text": "Read the hidden observatory archive log",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "score": 45,
+        "item": "Founders Chronometer"
+      }
+    },
+    {
+      "id": "q-bell-pact",
+      "title": "Song of the Twelve Bells",
+      "description": "Reconcile the Watch couriers and the clock-ringers before the final chime.",
+      "hidden": false,
+      "objectives": [
+        {
+          "id": "obj-bell-parley",
+          "text": "Speak with the Chief Bell-Ringer at the belfry",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "score": 25
+      }
+    }
+  ],
+  "achievements": [
+    {
+      "id": "ach-first-spark",
+      "title": "First Spark",
+      "description": "Trace the first lead toward the Solar Pendulum in Iron Street.",
+      "hidden": false,
+      "category": "exploration",
+      "scope": "playthrough"
+    },
+    {
+      "id": "ach-iron-diplomat",
+      "title": "Voices in the Fog",
+      "description": "Earn meaningful trust from either Vesper's couriers or the Foundry Syndicate.",
+      "hidden": false,
+      "category": "relationships",
+      "scope": "playthrough"
+    },
+    {
+      "id": "ach-unbroken-lamp",
+      "title": "No Lamp Left Dark",
+      "description": "Keep the lower wards lit while restoring mechanical momentum.",
+      "hidden": false,
+      "category": "quests",
+      "scope": "playthrough"
+    },
+    {
+      "id": "ach-shadow-archivist",
+      "title": "Shadow Archivist",
+      "description": "Uncover the hidden archive chamber and its pre-dusk astronomical records.",
+      "hidden": true,
+      "category": "secrets",
+      "scope": "permanent"
+    },
+    {
+      "id": "ach-dawn-bringer",
+      "title": "Dawn Bringer",
+      "description": "Restore genuine morning light to the city.",
+      "hidden": false,
+      "category": "endings",
+      "scope": "permanent"
+    },
+    {
+      "id": "ach-master-of-twilight",
+      "title": "Keeper of the Amber Hour",
+      "description": "Complete a run that preserves or masters the city's twilight clockwork.",
+      "hidden": false,
+      "category": "endings",
+      "scope": "permanent"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp-iron-street",
+      "label": "Iron Street Crossroads",
+      "actId": "act-1",
+      "chapterId": "ch-1"
+    },
+    {
+      "id": "cp-foundry-floor",
+      "label": "Deep Foundry Furnace Deck",
+      "actId": "act-1",
+      "chapterId": "ch-2"
+    },
+    {
+      "id": "cp-vault-threshold",
+      "label": "Observatory Vault Threshold",
+      "actId": "act-2",
+      "chapterId": "ch-4"
+    },
+    {
+      "id": "cp-meridian-apex",
+      "label": "Meridian Dome Apex",
+      "actId": "act-2",
+      "chapterId": "ch-5"
+    },
+    {
+      "id": "cp-sundial-court",
+      "label": "Sun-Dial Court Sanctum",
+      "actId": "act-3",
+      "chapterId": "ch-6"
+    }
+  ],
+  "endings": [
+    {
+      "id": "end-true-dawn",
+      "title": "When the Sky Remembers",
+      "type": "good"
+    },
+    {
+      "id": "end-eternal-dusk",
+      "title": "The Gilded Twilight",
+      "type": "neutral"
+    },
+    {
+      "id": "end-dark-archive",
+      "title": "Vault of Unspoken Hours",
+      "type": "secret"
+    },
+    {
+      "id": "end-ash-eclipse",
+      "title": "Cinders Beneath the Bell",
+      "type": "tragic"
+    }
+  ],
+  "presentation": {
+    "theme": "nocturne-brass",
+    "defaultBackgroundKey": "bg-iron-street-dusk",
+    "ambientAudio": "wind-and-gears"
+  },
+  "initialState": {
+    "flags": {
+      "inspectedMarket": false,
+      "metVesper": false,
+      "usedDrainageRoute": false,
+      "usedMeridianSeal": false,
+      "foundrySabotageAvoided": false,
+      "hasVaultCipher": false,
+      "readArchiveLog": false,
+      "bellPactForged": false
+    },
+    "stats": {
+      "dawnProgress": 0,
+      "trustSyndicate": 0,
+      "trustWatch": 0,
+      "trustBellkeepers": 0
+    },
+    "inventory": []
+  },
+  "tagColors": {
+    "narrative": "blue",
+    "choice": "green",
+    "auto": "purple",
+    "conditional": "orange",
+    "event": "teal",
+    "checkpoint": "gold",
+    "ending": "crimson"
+  }
+}
