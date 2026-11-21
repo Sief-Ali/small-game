@@ -1,28 +1,43 @@
-import { ArrowRight, RotateCcw } from 'lucide-react'
+import { ArrowRight, BookOpen, Sparkles } from 'lucide-react'
 
 type HomeScreenProps = {
-  answered: number
-  onStart: () => void
-  onRestart: () => void
+  hasProgress: boolean
+  onContinue: () => void
+  onStartNew: () => void
 }
 
-export function HomeScreen({ answered, onStart, onRestart }: HomeScreenProps) {
+export function HomeScreen({ hasProgress, onContinue, onStartNew }: HomeScreenProps) {
   return (
-    <section className="home-view">
-      <div className="hero-art" aria-hidden="true">
-        <span className="spark spark-one">✦</span><span className="spark spark-two">✳</span>
-        <div className="hero-orbit"><div className="hero-emoji">🎲</div></div>
-        <span className="float-emoji float-one">🍕</span><span className="float-emoji float-two">🦆</span><span className="float-emoji float-three">👻</span>
+    <section className="home-screen">
+      <div className="home-glow home-glow-one" aria-hidden="true"/>
+      <div className="home-glow home-glow-two" aria-hidden="true"/>
+      <div className="home-emblem" aria-hidden="true">
+        <span className="emblem-orbit orbit-one"/>
+        <span className="emblem-orbit orbit-two"/>
+        <span className="emblem-star">✦</span>
+        <span className="emblem-lantern">🏮</span>
       </div>
-      <p className="eyebrow">A tiny game of questionable decisions</p>
-      <h1>Hey, <span>troublemaker.</span></h1>
-      <p className="hero-copy">Five tiny challenges. A suspicious number of choices. Absolutely no correct answers.</p>
-      <div className="home-meta"><span>✦ 5 mini challenges</span><span>♡ 2–3 minutes</span><span>☻ zero pressure</span></div>
-      <button className="primary-button start-button" onClick={onStart}>
-        {answered ? 'Continue the chaos' : 'Let’s play'} <ArrowRight size={18}/>
-      </button>
-      {answered > 0 && <button className="text-button" onClick={onRestart}><RotateCcw size={14}/> Start fresh</button>}
-      <p className="tiny-note">Your progress stays on this device. No account, no drama.</p>
+      <p className="home-eyebrow"><Sparkles size={14}/> AN INTERACTIVE STORY</p>
+      <h1 className="home-title">The City That <em>Forgot Dawn</em></h1>
+      <p className="home-description">
+        A little lantern. A city trapped in twilight. And a choice about what kind of morning the world deserves.
+      </p>
+      <div className="home-facts">
+        <span><BookOpen size={15}/> 4 chapters</span>
+        <span>✦ 4 possible endings</span>
+        <span>♡ your choices matter</span>
+      </div>
+      <div className="home-actions">
+        {hasProgress && (
+          <button className="primary-button" onClick={onContinue}>
+            Continue story <ArrowRight size={18}/>
+          </button>
+        )}
+        <button className={hasProgress ? 'secondary-button' : 'primary-button'} onClick={onStartNew}>
+          {hasProgress ? 'Start a new journey' : 'Begin the story'} <ArrowRight size={18}/>
+        </button>
+      </div>
+      <p className="home-save-note">Your story is saved on this device. No account, no rush.</p>
     </section>
   )
 }
