@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+:root{font-family:'DM Sans',sans-serif;color:#332d35;background:#fff8f0;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-optical-sizing:auto;font-weight:400}
+*{box-sizing:border-box}
+body{margin:0;min-width:320px;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#fff0df 0%,#fff8f0 52%,#fff7f1 100%)}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #b17acb;outline-offset:3px}
+.app-shell{width:min(100%,560px);min-height:100svh;margin:0 auto;padding:0 22px;display:flex;flex-direction:column}
+.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee4db}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:#39303b;font-weight:800;font-size:14px;letter-spacing:-.4px}
+.brand-mark{display:grid;place-items:center;width:27px;height:27px;border-radius:9px;background:#f4d8c7;color:#a85e49;font-size:18px}
+.icon-button,.back-button{border:0;background:transparent;color:#827782;display:flex;align-items:center;justify-content:center}
+.icon-button{width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:0 2px 10px #5b44300c}
+.home-view,.result-view{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;padding:26px 0 42px}
+.hero-art{width:210px;height:190px;position:relative;display:grid;place-items:center;margin:0 auto 8px}
+.hero-orbit{width:148px;height:148px;border-radius:46% 54% 55% 45%;background:#f8dfcf;transform:rotate(-8deg);display:grid;place-items:center;box-shadow:inset 0 -8px 0 #edc7b2}
+.hero-emoji{font-size:76px;transform:rotate(8deg);filter:drop-shadow(0 8px 4px #8e60451c)}
+.spark{position:absolute;color:#d59a65;font-size:25px}.spark-one{top:13px;left:22px}.spark-two{right:18px;top:34px;color:#b28abf}
+.float-emoji{position:absolute;font-size:31px;filter:drop-shadow(0 4px 3px #8e60451c)}.float-one{left:3px;bottom:27px}.float-two{right:0;bottom:28px}.float-three{right:19px;top:5px;font-size:25px}
+.eyebrow{font-size:10px;letter-spacing:1.7px;text-transform:uppercase;font-weight:800;color:#a47d78;margin:8px 0 11px}
+h1,h2,p{margin-top:0}
+h1{font-family:'Playfair Display',serif;font-size:clamp(37px,10vw,51px);line-height:1.08;letter-spacing:-1.8px;margin:0 0 13px;font-weight:700}
+h1 span{color:#c27663;font-style:italic}
+.hero-copy{max-width:350px;color:#817780;font-size:14px;line-height:1.7;margin:0 auto 22px}
+.home-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:25px}
+.home-meta span{background:#fff;border:1px solid #f0e7df;border-radius:99px;padding:8px 11px;color:#847981;font-size:10px;font-weight:700}
+.primary-button{border:0;border-radius:14px;background:#39313c;color:white;padding:15px 19px;display:inline-flex;align-items:center;justify-content:center;gap:12px;font-weight:700;font-size:13px;box-shadow:0 5px 0 #211d25;transition:transform .15s,box-shadow .15s}
+.primary-button:active{transform:translateY(3px);box-shadow:0 2px 0 #211d25}
+.start-button{width:min(100%,290px)}
+.text-button{display:flex;align-items:center;gap:6px;border:0;background:none;color:#a17d78;font-size:11px;font-weight:700;margin-top:17px}
+.tiny-note{font-size:10px;color:#aaa0a4;margin:20px 0 0}
+.game-view{flex:1;padding:20px 0 30px;display:flex;flex-direction:column}
+.game-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.back-button{gap:6px;font-size:12px;font-weight:700;padding:8px 0}
+.level-count{font-size:10px;letter-spacing:1.3px;font-weight:800;color:#a48b8c}.level-count i{font-style:normal;color:#d2bdb7;margin:0 4px}
+.progress-track{height:6px;background:#efe5de;border-radius:20px;overflow:hidden;margin-bottom:19px}
+.progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#d88f78,#b78ab8);transition:width .3s}
+.challenge-card{border-radius:25px;padding:23px 17px 18px;border:1px solid #f0e2d8;box-shadow:0 12px 35px #75523b0d;text-align:center}
+.challenge-card.peach{background:#fff0e6}.challenge-card.lavender{background:#f4effb}.challenge-card.mint{background:#edf6ee}.challenge-card.blue{background:#edf4fa}.challenge-card.pink{background:#fceef2}
+.challenge-emoji{font-size:45px;margin:0 auto 5px;filter:drop-shadow(0 5px 3px #76533a12)}
+.challenge-card .eyebrow{margin:3px 0 8px;font-size:9px}
+h2{font-family:'Playfair Display',serif;font-size:30px;letter-spacing:-.8px;line-height:1.12;margin:0 0 11px;text-transform:capitalize}
+.prompt{font-size:13px;line-height:1.65;color:#746b73;max-width:390px;margin:0 auto 20px}
+.choices{display:grid;gap:9px}
+.choice-button{width:100%;display:flex;align-items:center;text-align:left;gap:11px;padding:12px 12px;border:1px solid #eadfd8;border-radius:13px;background:#fffdfb;color:#413942;min-height:58px;transition:border .15s,transform .15s,background .15s}
+.choice-button:active{transform:scale(.985)}.choice-button.selected{border:1.5px solid #bf887c;background:#fff8f3}.choice-button:disabled{cursor:default}
+.choice-emoji{font-size:23px;width:30px;text-align:center;flex-shrink:0}
+.choice-label{font-size:12px;font-weight:700;line-height:1.4;flex:1}
+.choice-index{font-size:9px;color:#c0b2ae;font-weight:800;letter-spacing:1px}
+.reaction-panel{border-top:1px dashed #d8c5ba;margin-top:17px;padding-top:15px;animation:rise .25s ease}
+.reaction-spark{font-size:9px;letter-spacing:1.8px;text-transform:uppercase;font-weight:800;color:#ad786d}
+.reaction-panel p{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;line-height:1.45;color:#57454c;margin:8px auto 15px;max-width:350px}
+.next-button{width:100%;padding:13px}
+.game-footnote{text-align:center;color:#aaa0a4;font-size:10px;margin:16px 0}
+.result-confetti{color:#c58d83;letter-spacing:8px;font-size:19px;margin-bottom:17px}
+.result-icon{font-size:64px;margin-bottom:15px;filter:drop-shadow(0 7px 4px #8e60451c)}
+.result-view h1{font-size:clamp(36px,9vw,46px)}
+.discovery-card{width:100%;background:#fff;border:1px solid #f0e5dd;border-radius:19px;padding:18px;text-align:left;margin:4px 0 20px;box-shadow:0 8px 25px #75523b09}
+.card-kicker{display:flex;align-items:center;gap:7px;color:#a47d78;font-size:9px;letter-spacing:1.2px;font-weight:800;margin:0 0 12px}
+.discovery-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f3eeea;font-size:13px;font-weight:700;color:#554a54}
+.discovery-number{font-size:10px;color:#c28d80;font-weight:800}
+.disclaimer{font-size:9px;line-height:1.5;color:#aaa0a4;margin:13px 0 0}
+.result-actions{width:100%;display:grid;gap:10px}.result-actions .primary-button,.secondary-button{width:100%}
+.secondary-button{border:1px solid #e9ded7;border-radius:13px;background:#fff;color:#786c75;padding:13px;font-size:12px;font-weight:700}
+.footer{display:flex;align-items:center;justify-content:center;gap:11px;padding:18px 0 max(18px,env(safe-area-inset-bottom));font-size:9px;color:#b2a5a5;letter-spacing:.5px}
+@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:600px){.app-shell{padding:0 30px}.game-view{justify-content:center}.challenge-card{padding:28px 24px 22px}.home-view{padding-top:36px}.hero-art{margin-bottom:15px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
