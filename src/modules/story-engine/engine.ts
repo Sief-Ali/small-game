@@ -1,4 +1,4 @@
-import type { StoryFlag, StorySave, StoryScene } from '../choose-your-chaos/types'
+import type { StoryFlag, StorySave, StoryScene } from './types'
 
 export type StoryDefinition = {
   startSceneId: string
