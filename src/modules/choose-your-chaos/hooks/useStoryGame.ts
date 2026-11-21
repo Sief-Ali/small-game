@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { START_SCENE_ID, storyScenes, TOTAL_CHAPTERS } from '../../../../stories/the-city-that-forgot-dawn/en/story'
-import { getCurrentScene, getStoryProgress, transitionStory } from '../../story-engine/engine'
+import { getCurrentScene, getStoryProgress, transitionStory, validateStoryDefinition } from '../../story-engine/engine'
 import { createEmptyStorySave, readStorySave, writeStorySave } from '../lib/storage'
 import type { StorySave } from '../types'
 
@@ -18,6 +18,13 @@ export function useStoryGame() {
     () => ({ startSceneId: START_SCENE_ID, totalChapters: TOTAL_CHAPTERS, scenes: storyScenes }),
     []
   )
+  const validationIssues = useMemo(() => validateStoryDefinition(story), [story])
+  useEffect(() => {
+    if (validationIssues.length > 0) {
+      console.error('Story definition validation failed:', validationIssues)
+    }
+  }, [validationIssues])
+
   const scene = useMemo(
     () => getCurrentScene(story, save.currentSceneId),
     [story, save.currentSceneId]
