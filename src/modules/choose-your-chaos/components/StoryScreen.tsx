@@ -52,6 +52,14 @@ export function StoryScreen({
               <h1 className="story-title">{scene.title}</h1>
             )}
 
+            {scene.question && (
+              <div className="embedded-question">
+                <span className="question-label">A MOMENT TO CHOOSE</span>
+                <p>{scene.question.prompt}</p>
+                {scene.question.note && <small>{scene.question.note}</small>}
+              </div>
+            )}
+
             <div className="story-copy">
               {scene.paragraphs.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
