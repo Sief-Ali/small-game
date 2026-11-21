@@ -33,16 +33,18 @@ stories/
     └── en/
         ├── story.ts
         ├── helpers.ts
-        └── chapters/
+        ├── chapters/
             ├── chapter-01.ts
             ├── chapter-02.ts
             ├── chapter-03.ts
             └── chapter-04.ts
+    └── ar/
+        └── story.json
 ```
 
 The manifest identifies the story, its start passage, chapter count and supported locales. Each chapter exports a map of passages. Passage IDs and choice IDs are stable identifiers; translations must preserve them. Choice definitions can change story flags and signals, and can route to another passage using `nextScene`.
 
-English is the source language for the current story. Existing Arabic story translations remain in the i18next Arabic resource while the content migration is completed. UI translations stay in the feature's i18n directory.
+English is the source language for the current story. Arabic story translations live in `stories/the-city-that-forgot-dawn/ar/story.json`; application UI translations remain in the feature's i18n directory. UI translations stay in the feature's i18n directory.
 
 ## Current story
 
