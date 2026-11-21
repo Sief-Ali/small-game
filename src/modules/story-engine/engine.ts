@@ -53,3 +53,98 @@ export function getStoryProgress(scene: StoryScene, totalChapters: number): numb
   const chapterProgress = [8, 34, 65, 88]
   return chapterProgress[scene.chapter - 1] ?? Math.round(((scene.chapter - 1) / totalChapters) * 100)
 }
+
+export type StoryValidationIssue = {
+  code: 'missing-start' | 'missing-target' | 'key-id-mismatch' | 'duplicate-choice' | 'invalid-chapter' | 'ending-has-choices' | 'unreachable-scene'
+  message: string
+  sceneId?: string
+}
+
+export function validateStoryDefinition(story: StoryDefinition): StoryValidationIssue[] {
+  const issues: StoryValidationIssue[] = []
+  const startScene = story.scenes[story.startSceneId]
+
+  if (!startScene) {
+    issues.push({
+      code: 'missing-start',
+      message: `The start passage "${story.startSceneId}" does not exist.`
+    })
+  }
+
+  for (const [key, scene] of Object.entries(story.scenes)) {
+    if (key !== scene.id) {
+      issues.push({
+        code: 'key-id-mismatch',
+        sceneId: scene.id,
+        message: `Scene map key "${key}" does not match passage id "${scene.id}".`
+      })
+    }
+
+    if (!Number.isInteger(scene.chapter) || scene.chapter < 1 || scene.chapter > story.totalChapters) {
+      issues.push({
+        code: 'invalid-chapter',
+        sceneId: scene.id,
+        message: `Passage "${scene.id}" has an invalid chapter number.`
+      })
+    }
+
+    if (scene.kind === 'ending' && scene.choices.length > 0) {
+      issues.push({
+        code: 'ending-has-choices',
+        sceneId: scene.id,
+        message: `Ending "${scene.id}" must not have outgoing choices.`
+      })
+    }
+
+    const choiceIds = new Set<string>()
+    for (const choice of scene.choices) {
+      if (choiceIds.has(choice.id)) {
+        issues.push({
+          code: 'duplicate-choice',
+          sceneId: scene.id,
+          message: `Passage "${scene.id}" contains duplicate choice id "${choice.id}".`
+        })
+      }
+      choiceIds.add(choice.id)
+
+      if (!story.scenes[choice.nextScene]) {
+        issues.push({
+          code: 'missing-target',
+          sceneId: scene.id,
+          message: `Choice "${choice.id}" in "${scene.id}" points to missing passage "${choice.nextScene}".`
+        })
+      }
+    }
+  }
+
+  if (startScene) {
+    const reachable = new Set<string>()
+    const pending = [story.startSceneId]
+
+    while (pending.length > 0) {
+      const sceneId = pending.pop()!
+      if (reachable.has(sceneId)) continue
+      reachable.add(sceneId)
+
+      const scene = story.scenes[sceneId]
+      if (!scene) continue
+      for (const choice of scene.choices) {
+        if (story.scenes[choice.nextScene] && !reachable.has(choice.nextScene)) {
+          pending.push(choice.nextScene)
+        }
+      }
+    }
+
+    for (const sceneId of Object.keys(story.scenes)) {
+      if (!reachable.has(sceneId)) {
+        issues.push({
+          code: 'unreachable-scene',
+          sceneId,
+          message: `Passage "${sceneId}" cannot be reached from the start passage.`
+        })
+      }
+    }
+  }
+
+  return issues
+}
