@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { START_SCENE_ID, storyScenes, TOTAL_CHAPTERS } from '../../../../stories/the-city-that-forgot-dawn/en/story'
 import { getCurrentScene, getStoryProgress, transitionStory } from '../../story-engine/engine'
 import { createEmptyStorySave, readStorySave, writeStorySave } from '../lib/storage'
-import type { StoryFlag, StorySave } from '../types'
+import type { StorySave } from '../types'
 
 type Screen = 'home' | 'story'
 
@@ -27,7 +27,10 @@ export function useStoryGame() {
   const progress = getStoryProgress(scene, story.totalChapters)
 
   function choose(choiceId: string) {
-    setSave(current => transitionStory(story, current, scene, choiceId) ?? current)
+    setSave(current => {
+      const currentScene = getCurrentScene(story, current.currentSceneId)
+      return transitionStory(story, current, currentScene, choiceId) ?? current
+    })
   }
 
   function continueStory() {
