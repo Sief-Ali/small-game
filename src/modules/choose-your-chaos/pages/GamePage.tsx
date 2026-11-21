@@ -1,9 +1,13 @@
+import { StoryEnginePreviewPage } from '../../story-engine'
 import { HomeScreen } from '../components/HomeScreen'
 import { StoryScreen } from '../components/StoryScreen'
 import { useStoryGame } from '../hooks/useStoryGame'
 
 export default function GamePage() {
   const game = useStoryGame()
+  const isEnginePreview = new URLSearchParams(window.location.search).get('engine') === 'preview'
+
+  if (isEnginePreview) return <StoryEnginePreviewPage />
 
   return (
     <main className="app-shell">
