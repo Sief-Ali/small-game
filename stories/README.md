@@ -8,6 +8,7 @@ stories/<story-id>/
 └── <locale>/
     ├── story.ts
     ├── helpers.ts
+    ├── story.json (for translated story text, when needed)
     └── chapters/
         ├── chapter-01.ts
         └── ...
@@ -24,7 +25,7 @@ stories/<story-id>/
 - Endings have `kind: 'ending'` and no outgoing choices.
 - Keep translated passages aligned by passage ID, choice ID and paragraph order.
 
-The current React UI reads the typed story definition and renders it. The engine does not render HTML and does not know about React, routes, accounts or cloud storage.
+The current React UI reads the typed story definition and renders it. The engine does not render HTML and does not know about React, routes, accounts or cloud storage. Keep locale-specific narrative translations under the same story directory (for example, `ar/story.json`). UI translations remain in the app's i18n resources.
 
 ## Adding a chapter
 
