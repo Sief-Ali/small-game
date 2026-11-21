@@ -1,5 +1,5 @@
 import type { StoryFlag, StorySave } from '../types'
-import { START_SCENE_ID } from '../data/story'
+import { START_SCENE_ID } from '../../../../stories/the-city-that-forgot-dawn/en/story'
 
 const SAVE_KEY = 'choose-your-chaos-story-v2'
 
