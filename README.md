@@ -13,49 +13,59 @@ pnpm dev
 
 ```bash
 pnpm build
-pnpm preview
 ```
 
-## Architecture
+## Story architecture
 
-- **React** owns the complete presentation: passage layout, artwork, atmosphere, choices, navigation and transitions.
-- **Story engine** is a framework-independent TypeScript module. It resolves the current passage and applies choice consequences to story state.
-- **Story files** live in the top-level `stories/` directory, grouped by story, locale and chapter.
-- **Local persistence** currently keeps progress in the browser. The storage boundary will be extended for account-backed cloud saves and synchronization without making the story renderer depend on the backend.
-- **i18next** supplies English and Arabic UI translations. Arabic story copy is stored beside the story source and loaded into i18next. Arabic uses RTL layout.
+React owns the complete presentation: story layout, artwork placeholders, atmosphere, choices, navigation and transitions. A framework-independent TypeScript story engine owns passage transitions and story state. No embedded story player or iframe is required.
 
-## Story content
+Story authoring files live outside the app source:
 
 ```text
 stories/
 └── the-city-that-forgot-dawn/
     ├── manifest.json
-    └── en/
-        ├── story.ts
-        ├── helpers.ts
-        ├── chapters/
-            ├── chapter-01.ts
-            ├── chapter-02.ts
-            ├── chapter-03.ts
-            └── chapter-04.ts
+    ├── en/
+    │   ├── story.ts
+    │   └── chapters/
+    │       ├── chapter-01.ts
+    │       ├── chapter-02.ts
+    │       ├── chapter-03.ts
+    │       ├── chapter-04.ts
+    │       ├── chapter-05.ts
+    │       ├── chapter-06.ts
+    │       └── chapter-07.ts
     └── ar/
-        └── story.json
+        ├── meta.json
+        └── chapters/
+            ├── chapter-01.json
+            ├── chapter-02.json
+            ├── chapter-03.json
+            ├── chapter-04.json
+            ├── chapter-05.json
+            ├── chapter-06.json
+            └── chapter-07.json
 ```
 
-The manifest identifies the story, its start passage, chapter count and supported locales. Each chapter exports a map of passages. Passage IDs and choice IDs are stable identifiers; translations must preserve them. Choice definitions can change story flags and signals, and can route to another passage using `nextScene`.
+The manifest contains acts, chapters, quests, quest objectives and rewards, achievements, checkpoints, endings, presentation defaults and initial state. English chapter modules contain stable passage IDs, body copy, choices, conditions and entry effects. Arabic chapter JSON files contain only translated passage copy and choice labels; IDs and logic always come from the English source.
 
-English is the source language for the current story. Arabic story translations live in `stories/the-city-that-forgot-dawn/ar/story.json`; application UI translations remain in the feature's i18n directory.
+## Current story content
 
-## Current story
+- 3 acts and 7 chapters.
+- 41 passages across the complete story.
+- 49 choice links, including inventory/stat/flag-gated options.
+- 4 endings.
+- 4 quests with objectives and rewards.
+- 6 achievements.
+- 5 checkpoints.
+- Inventory, relationship values, flags and dawn-progress stat.
+- One automatic passage transition.
+- Arabic and English story text with matching passage and choice IDs.
 
-- Four chapters.
-- Three different opening routes.
-- Six route-specific events before the story converges.
-- Four endings.
-- Earlier choices influence later conditional passages.
-- Atmosphere and artwork references are part of each passage.
-- Local progress saving, continue and replay.
+## Story engine
 
-## Development status
+The engine interprets typed conditions (`all`, `any`, `not`, flags, inventory and stat comparisons) and typed entry effects (quest updates, rewards, relationships, inventory, achievements, checkpoints, chapter progress and endings). These are plain data—not SugarCube macros or executable story scripts.
 
-The React story UI is the active renderer. The story engine is deliberately independent of React and browser APIs. Account authentication, cloud storage and cross-device synchronization are not implemented yet; they will be added behind a persistence/API boundary.
+## Saving
+
+The current version saves progress locally in the browser. The save schema has been versioned for this story migration, so old prototype saves are not mixed with the new seven-chapter story. Accounts, cloud saves and cross-device sync remain a separate backend milestone.

@@ -4,6 +4,7 @@ import { useStoryGame } from '../hooks/useStoryGame'
 
 export default function GamePage() {
   const game = useStoryGame()
+
   return (
     <main className="app-shell">
       {game.screen === 'home' ? (
@@ -14,8 +15,9 @@ export default function GamePage() {
         />
       ) : (
         <StoryScreen
+          story={game.story}
           scene={game.scene}
-          flags={game.save.flags}
+          save={game.save}
           progress={game.progress}
           onChoose={game.choose}
           onHome={game.goHome}
