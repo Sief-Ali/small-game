@@ -19,9 +19,8 @@ export function useStoryGame() {
   )
 
   const hasProgress = save.history.length > 0 || save.completed
-  const progress = scene.kind === 'ending'
-    ? 100
-    : Math.round(((scene.chapter - 1) / (TOTAL_CHAPTERS - 1)) * 100)
+  const chapterProgress = [8, 34, 65, 88]
+  const progress = scene.kind === 'ending' ? 100 : chapterProgress[scene.chapter - 1] || 0
 
   function choose(choiceId: string) {
     const choice = scene.choices.find(item => item.id === choiceId)
