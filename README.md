@@ -22,7 +22,7 @@ pnpm preview
 - **Story engine** is a framework-independent TypeScript module. It resolves the current passage and applies choice consequences to story state.
 - **Story files** live in the top-level `stories/` directory, grouped by story, locale and chapter.
 - **Local persistence** currently keeps progress in the browser. The storage boundary will be extended for account-backed cloud saves and synchronization without making the story renderer depend on the backend.
-- **i18next** currently supplies English and Arabic UI/story translations. Arabic uses RTL layout.
+- **i18next** supplies English and Arabic UI translations. Arabic story copy is stored beside the story source and loaded into i18next. Arabic uses RTL layout.
 
 ## Story content
 
@@ -44,7 +44,7 @@ stories/
 
 The manifest identifies the story, its start passage, chapter count and supported locales. Each chapter exports a map of passages. Passage IDs and choice IDs are stable identifiers; translations must preserve them. Choice definitions can change story flags and signals, and can route to another passage using `nextScene`.
 
-English is the source language for the current story. Arabic story translations live in `stories/the-city-that-forgot-dawn/ar/story.json`; application UI translations remain in the feature's i18n directory. UI translations stay in the feature's i18n directory.
+English is the source language for the current story. Arabic story translations live in `stories/the-city-that-forgot-dawn/ar/story.json`; application UI translations remain in the feature's i18n directory.
 
 ## Current story
 
