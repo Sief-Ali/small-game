@@ -1,6 +1,6 @@
 # Choose Your Chaos — The City That Forgot Dawn
 
-A mobile-first branching visual novel built with React, TypeScript and Vite.
+A mobile-first branching visual novel built with React, TypeScript, Vite and i18next.
 
 ## Run locally
 
@@ -15,6 +15,29 @@ pnpm dev
 pnpm build
 pnpm preview
 ```
+
+## Languages
+
+The game currently supports:
+
+- English (LTR)
+- Arabic (RTL)
+
+Use the language toggle in the home screen or story header. The selected language is saved in local storage and restored on the next visit. Switching to Arabic updates the document language and direction and applies RTL layout styles.
+
+Translations are managed with `i18next` and `react-i18next`:
+
+```text
+src/modules/choose-your-chaos/i18n/
+├── index.ts
+└── locales/
+    ├── en.json
+    └── ar.json
+```
+
+The English story content in `data/story.ts` is the fallback source. Arabic narrative, dialogue, choices, conditional story memories and artwork descriptions are stored in `ar.json`. New scenes should add their translation keys to each supported locale.
+
+For a future Next.js App Router migration, the same translation resources can be retained while the integration is adapted to the Next.js runtime. The current project is a Vite React app, so it uses `react-i18next` directly.
 
 ## The story
 
@@ -37,12 +60,18 @@ src/
 │   └── choose-your-chaos/
 │       ├── components/
 │       │   ├── HomeScreen.tsx
+│       │   ├── LanguageToggle.tsx
 │       │   ├── SceneArtwork.tsx
 │       │   └── StoryScreen.tsx
 │       ├── data/
 │       │   └── story.ts
 │       ├── hooks/
 │       │   └── useStoryGame.ts
+│       ├── i18n/
+│       │   ├── index.ts
+│       │   └── locales/
+│       │       ├── en.json
+│       │       └── ar.json
 │       ├── lib/
 │       │   └── storage.ts
 │       ├── pages/
@@ -54,7 +83,7 @@ src/
 └── main.tsx
 ```
 
-Feature-specific UI, state, content and persistence stay inside the feature module. Shared code should only move to top-level shared directories when another feature needs it.
+Feature-specific UI, state, content, translations and persistence stay inside the feature module. Shared code should only move to top-level shared directories when another feature needs it.
 
 ## Story content and branching
 
