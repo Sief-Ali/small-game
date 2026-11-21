@@ -12,6 +12,8 @@ import { chapter05 } from './chapters/chapter-05'
 import { chapter06 } from './chapters/chapter-06'
 import { chapter07 } from './chapters/chapter-07'
 
+const storyMetadata = manifest as unknown as Omit<StoryDefinition, 'passages'>
+
 const sourcePassages: Record<string, StoryPassageSource> = {
   ...chapter01,
   ...chapter02,
@@ -22,8 +24,8 @@ const sourcePassages: Record<string, StoryPassageSource> = {
   ...chapter07
 }
 
-const chaptersById = new Map(manifest.chapters.map(chapter => [chapter.id, chapter] as const))
-const actsById = new Map(manifest.acts.map(act => [act.id, act] as const))
+const chaptersById = new Map(storyMetadata.chapters.map(chapter => [chapter.id, chapter] as const))
+const actsById = new Map(storyMetadata.acts.map(act => [act.id, act] as const))
 
 const backgroundSymbols: Record<string, string> = {
   'bg-iron-street-dusk': '🌆',
@@ -70,7 +72,7 @@ const passages = Object.fromEntries(
 ) as Record<string, StoryPassage>
 
 export const storyDefinition: StoryDefinition = {
-  ...manifest,
+  ...storyMetadata,
   passages
 }
 

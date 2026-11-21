@@ -17,6 +17,6 @@ export type {
   StoryQuestProgress,
   StoryHistoryEntry,
   StorySave
-} from '../../story-engine/types'
+} from '../story-engine/types'
 
-export type { StoryPassage as StoryScene } from '../../story-engine/types'
+export type { StoryPassage as StoryScene } from '../story-engine/types'
