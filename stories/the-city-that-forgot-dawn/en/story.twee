@@ -9,7 +9,8 @@ The City That Forgot Dawn
   "start": "Start"
 }
 
-:: StoryInit [script]
+:: StoryInit
+<<script>>
 (function () {
   function notifyParent(event) {
     window.parent.postMessage(
@@ -19,10 +20,10 @@ The City That Forgot Dawn
   }
 
   $(document).on(':passagedisplay', function (event) {
-    var passage = event.passage;
+    var passage = event.detail.passage;
     notifyParent({
       type: 'passage-displayed',
-      passage: passage.title,
+      passage: passage.name,
       tags: passage.tags || [],
       historyLength: State.length
     });
@@ -40,6 +41,7 @@ The City That Forgot Dawn
     notifyParent({ type: 'runtime-ready' });
   });
 })();
+<</script>>
 
 :: Start [chapter]
 <h1>The City That Forgot Dawn</h1>
