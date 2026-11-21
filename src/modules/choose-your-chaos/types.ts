@@ -32,6 +32,7 @@ export type StoryCondition = {
 export type StoryQuestionDefinition = {
   key: string
   category: string
+  prompt: string
   note?: string
 }
 
