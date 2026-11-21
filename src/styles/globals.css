@@ -598,3 +598,81 @@ html[dir='rtl'] .home-toolbar {
     gap: 7px;
   }
 }
+
+
+/* Readable story typography: calmer headings, stronger narrative and choices. */
+.story-title {
+  font-size: clamp(25px, 2.35vw, 35px);
+  line-height: 1.2;
+  letter-spacing: -.6px;
+  margin-bottom: 17px;
+}
+.story-copy {
+  font-size: 16px;
+  line-height: 1.85;
+}
+.story-copy p { margin-bottom: 15px; }
+.choice-heading { font-size: 11px; }
+.story-choice {
+  min-height: 72px;
+  padding: 13px 38px 13px 14px;
+}
+.choice-label {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.choice-detail {
+  font-size: 12px;
+  line-height: 1.55;
+}
+html[dir='rtl'] .story-title {
+  font-size: clamp(25px, 2.25vw, 34px);
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+html[dir='rtl'] .story-copy {
+  font-size: 16px;
+  line-height: 2;
+}
+html[dir='rtl'] .choice-label {
+  font-size: 14px;
+  line-height: 1.75;
+}
+html[dir='rtl'] .choice-detail {
+  font-size: 12px;
+  line-height: 1.7;
+}
+@media (max-width: 850px) {
+  .story-title { font-size: clamp(25px, 3vw, 32px); }
+  .story-copy { font-size: 15px; }
+}
+@media (max-width: 650px) {
+  .story-panel { padding: 22px 20px; }
+  .story-title {
+    font-size: clamp(25px, 7vw, 31px);
+    line-height: 1.3;
+    margin-bottom: 13px;
+  }
+  .story-copy {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .story-copy p { margin-bottom: 12px; }
+  .choice-heading { font-size: 10px; }
+  .story-choice {
+    min-height: 68px;
+    padding: 12px 34px 12px 10px;
+  }
+  .choice-label { font-size: 13px; line-height: 1.55; }
+  .choice-detail { font-size: 11px; line-height: 1.5; }
+  html[dir='rtl'] .story-title {
+    font-size: clamp(25px, 7vw, 31px);
+    line-height: 1.5;
+  }
+  html[dir='rtl'] .story-copy {
+    font-size: 15px;
+    line-height: 1.95;
+  }
+  html[dir='rtl'] .choice-label { font-size: 13px; line-height: 1.7; }
+  html[dir='rtl'] .choice-detail { font-size: 11px; line-height: 1.65; }
+}
