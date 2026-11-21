@@ -1,4 +1,4 @@
-import type { StoryFlag, StorySignal } from '../../../../src/modules/choose-your-chaos/types'
+import type { StoryFlag, StorySignal } from '../../../../src/modules/story-engine/types'
 
 export const flags = (...entries: [StoryFlag, number][]) =>
   Object.fromEntries(entries) as Partial<Record<StoryFlag, number>>
