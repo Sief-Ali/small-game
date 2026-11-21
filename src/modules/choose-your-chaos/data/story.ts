@@ -161,10 +161,10 @@ export const storyScenes: Record<string, StoryScene> = {
     atmosphere: 'clockheart',
     artwork: { key: 'nera-clock-heart-chamber', description: 'A vast circular chamber inside a clock tower, with four lantern hooks, floating sparks and a golden mechanism.', symbol: '✨', caption: 'The heart of the clock · choose what morning means' },
     choices: [
-      { id: 'share-dawn', label: 'Let everyone share the lantern’s light.', detail: 'No single person should own the morning.', icon: '🕯️', nextScene: 'ending_shared', flags: flags(['kindness', 1], ['community', 2]), signals: signals(['connection', 2], ['generosity', 1]) },
-      { id: 'keep-warmth', label: 'Save one warm light for a quiet, safe home.', detail: 'A gentle beginning can matter more than a grand one.', icon: '🏡', nextScene: 'ending_warm', flags: flags(['care', 2]), signals: signals(['comfort', 2], ['stability', 1]) },
-      { id: 'free-the-star', label: 'Release the star and let it find its own sky.', detail: 'Some beautiful things should be free to change.', icon: '🌠', nextScene: 'ending_wild', flags: flags(['wonder', 1], ['courage', 1]), signals: signals(['adventure', 2], ['novelty', 1]) },
-      { id: 'turn-the-clock', label: 'Repair the clock and bring back the natural rhythm.', detail: 'Give the whole city a chance to begin again.', icon: '⏳', nextScene: 'ending_clock', flags: flags(['curiosity', 1], ['care', 1]), signals: signals(['independence', 1], ['stability', 1]) }
+      { id: 'share-dawn', label: 'Let everyone share the lantern’s light.', detail: 'No single person should own the morning.', icon: '🕯️', nextScene: 'ending_shared', signals: signals(['connection', 2], ['generosity', 1]) },
+      { id: 'keep-warmth', label: 'Save one warm light for a quiet, safe home.', detail: 'A gentle beginning can matter more than a grand one.', icon: '🏡', nextScene: 'ending_warm', signals: signals(['comfort', 2], ['stability', 1]) },
+      { id: 'free-the-star', label: 'Release the star and let it find its own sky.', detail: 'Some beautiful things should be free to change.', icon: '🌠', nextScene: 'ending_wild', signals: signals(['adventure', 2], ['novelty', 1]) },
+      { id: 'turn-the-clock', label: 'Repair the clock and bring back the natural rhythm.', detail: 'Give the whole city a chance to begin again.', icon: '⏳', nextScene: 'ending_clock', signals: signals(['independence', 1], ['stability', 1]) }
     ]
   },
 
@@ -179,7 +179,7 @@ export const storyScenes: Record<string, StoryScene> = {
     ],
     conditionalParagraphs: [
       { flag: 'kindness', minimum: 1, text: 'Lina is among the first to light a candle. She waves when she sees you, and the little star around her neck catches the sunrise.' },
-      { flag: 'community', minimum: 2, text: 'The market vendors, the bell keeper and the station workers all gather in the square. Your journey has quietly brought them back to one another.' }
+      { flag: 'community', minimum: 1, text: 'The market vendors, the bell keeper and the station workers all gather in the square. Your journey has quietly brought them back to one another.' }
     ],
     atmosphere: 'sunrise',
     artwork: { key: 'ending-shared-dawn', description: 'The whole city gathered at sunrise, passing candlelight between neighbours beneath a golden sky.', symbol: '🌇', caption: 'The Shared Dawn · a new day, together' },
