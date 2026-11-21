@@ -16,7 +16,6 @@
     "en/chapters/chapter-04.ts"
   ],
   "translations": {
-    "en": "../../src/modules/choose-your-chaos/i18n/locales/en.json",
-    "ar": "../../src/modules/choose-your-chaos/i18n/locales/ar.json"
+    "ar": "ar/story.json"
   }
 }
