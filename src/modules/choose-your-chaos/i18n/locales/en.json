@@ -1,0 +1,31 @@
+{
+  "ui": {
+    "homeEyebrow": "AN INTERACTIVE STORY",
+    "homeTitle": "The City That",
+    "homeTitleEmphasis": "Forgot Dawn",
+    "homeDescription": "A little lantern. A city trapped in twilight. And a choice about what kind of morning the world deserves.",
+    "factChapters": "4 chapters",
+    "factEndings": "4 possible endings",
+    "factChoices": "your choices matter",
+    "beginStory": "Begin the story",
+    "continueStory": "Continue story",
+    "newJourney": "Start a new journey",
+    "saveNote": "Your story is saved on this device. No account, no rush.",
+    "homeAria": "Go to story home",
+    "complete": "COMPLETE",
+    "chapter": "CHAPTER {{chapter}} / 4",
+    "endingKicker": "YOUR STORY, YOUR ENDING",
+    "storyMovesOn": "THE STORY MOVES ON",
+    "littleQuestion": "A LITTLE QUESTION",
+    "whatDoYouDo": "WHAT DO YOU DO?",
+    "questionLabel": "A MOMENT TO CHOOSE",
+    "footerStory": "THE CITY THAT FORGOT DAWN",
+    "footerComplete": "THANK YOU FOR PLAYING",
+    "footerTrace": "EVERY CHOICE LEAVES A TRACE",
+    "takeAnotherPath": "Take another path",
+    "returnBeginning": "Return to the beginning",
+    "switchToArabic": "العربية",
+    "switchToEnglish": "English",
+    "languageLabel": "Change language"
+  }
+}
