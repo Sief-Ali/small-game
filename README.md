@@ -104,3 +104,32 @@ The current game does not show a personality score or make psychological claims.
 This version is local-first. Progress and choice signals are saved in the current browser on the current device. There is no account, backend, analytics or external database connection.
 
 The `MONGO_DB_MONGODB_URI` variable is not used by this frontend-only version. Never expose a database URI in browser code or commit it to Git.
+
+
+## Twee 3 and SugarCube 2 story engine
+
+The project now has a separate Twee 3 source pipeline for the next story-engine milestone. The sample story is in `stories/the-city-that-forgot-dawn/en/story.twee`.
+
+The current React scene implementation remains the default application experience while the SugarCube integration is introduced behind a developer preview. This keeps the existing game usable during the migration.
+
+### Compile and preview
+
+Install Tweego and the SugarCube 2 story format, then verify that Tweego lists `sugarcube-2`:
+
+```bash
+tweego --list-formats
+```
+
+Compile all story locales:
+
+```bash
+pnpm stories:build
+```
+
+If Tweego is not on PATH, set `TWEEGO_BIN` to its executable. If SugarCube is installed outside Tweego's normal story-format directories, set `TWEEGO_PATH` to the directory containing the format.
+
+Start the Vite app and open `/?engine=preview` to run the compiled story inside the sandboxed SugarCube iframe and inspect the runtime events received by React.
+
+See [docs/story-authoring.md](docs/story-authoring.md) for the authoring convention, compiler setup, bridge contract, and current limitations.
+
+Compiled HTML under `public/stories/` is generated output and is intentionally ignored by Git. Commit the Twee source, not the generated HTML.
