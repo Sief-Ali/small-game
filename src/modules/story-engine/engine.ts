@@ -20,10 +20,7 @@ export function transitionStory(
   if (!choice || currentScene.kind === 'ending') return null
 
   const nextScene = story.scenes[choice.nextScene]
-  if (!nextScene) {
-    console.error(`Story "${currentScene.id}" references missing scene "${choice.nextScene}".`)
-    return null
-  }
+  if (!nextScene) return null
 
   const flags: Record<StoryFlag, number> = { ...save.flags }
   for (const [key, value] of Object.entries(choice.flags ?? {})) {
