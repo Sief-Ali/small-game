@@ -1,6 +1,6 @@
-# Choose Your Chaos
+# Choose Your Chaos — The City That Forgot Dawn
 
-A tiny, mobile-first choice game made with React, TypeScript and Vite.
+A mobile-first branching visual novel built with React, TypeScript and Vite.
 
 ## Run locally
 
@@ -16,36 +16,62 @@ pnpm build
 pnpm preview
 ```
 
+## The story
+
+Nera is a city trapped in an endless blue evening. A brass lantern chooses the player, who discovers why the sunrise disappeared and decides what kind of morning the city deserves.
+
+The current story includes:
+
+- Four chapters with three different opening routes.
+- Six route-specific events before the story converges.
+- Four distinct endings.
+- Earlier choices that change small details in later scenes and endings.
+- Atmosphere themes that change the scene palette as the story moves.
+- Automatic local progress saving, resume and replay.
+
 ## Project structure
 
 ```text
 src/
 ├── modules/
 │   └── choose-your-chaos/
-│       ├── components/   # Feature UI
-│       ├── data/         # Challenges and result labels
-│       ├── hooks/        # Game state and flow
-│       ├── lib/          # Feature-specific persistence
-│       ├── pages/        # Feature page composition
-│       └── types.ts      # Feature types
-├── styles/               # Global styles
-├── App.tsx               # Application entry composition
-└── main.tsx              # React bootstrap
+│       ├── components/
+│       │   ├── HomeScreen.tsx
+│       │   ├── SceneArtwork.tsx
+│       │   └── StoryScreen.tsx
+│       ├── data/
+│       │   └── story.ts
+│       ├── hooks/
+│       │   └── useStoryGame.ts
+│       ├── lib/
+│       │   └── storage.ts
+│       ├── pages/
+│       │   └── GamePage.tsx
+│       └── types.ts
+├── styles/
+│   └── globals.css
+├── App.tsx
+└── main.tsx
 ```
 
-Feature-specific code stays inside its module. Shared components, hooks, and utilities belong in top-level shared directories only when more than one feature needs them.
+Feature-specific UI, state, content and persistence stay inside the feature module. Shared code should only move to top-level shared directories when another feature needs it.
 
-## Features
+## Story content and branching
 
-- Five short, funny scenario challenges
-- Choice-specific reactions
-- A playful end-of-game vibe check based on accumulated choice tags
-- Automatic progress saving in the browser's localStorage
-- Resume, replay and start-fresh controls
-- Responsive, mobile-first layout
+All scenes live in `src/modules/choose-your-chaos/data/story.ts`.
+
+Each scene has a stable ID, chapter, atmosphere, artwork reference, paragraphs and choices. A choice points to its next scene through `nextScene`. It can also update story flags that influence conditional paragraphs later in the journey.
+
+The `artwork.key` and `artwork.description` fields are references for future illustrations. `SceneArtwork.tsx` currently renders a themed placeholder; real scene images can be added later without changing the story graph.
+
+## Adding optional questions later
+
+The story types already support `kind: 'question'`, question metadata, and choice-level `signals`. That gives us a clean way to insert short, optional questions between story scenes later. Their answers can be associated with broad preference dimensions without changing the branching story engine.
+
+The current game does not show a personality score or make psychological claims. Signals are only stored locally as groundwork for a future, clearly presented end-of-story reflection.
 
 ## Data and privacy
 
-This first version is intentionally local-first. Game progress is stored in the current browser on the current device. There is no account, backend, analytics, or external database connection.
+This version is local-first. Progress and choice signals are saved in the current browser on the current device. There is no account, backend, analytics or external database connection.
 
-A MongoDB connection is not needed for local saves. The `MONGO_DB_MONGODB_URI` environment variable is therefore not used or copied into this repository. Never expose a database URI in frontend code or commit it to Git.
+The `MONGO_DB_MONGODB_URI` variable is not used by this frontend-only version. Never expose a database URI in browser code or commit it to Git.
