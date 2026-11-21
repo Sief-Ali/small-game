@@ -1,25 +1,77 @@
-export type Choice = {
+export type StoryFlag =
+  | 'curiosity'
+  | 'kindness'
+  | 'courage'
+  | 'care'
+  | 'community'
+  | 'wonder'
+
+export type StorySignal =
+  | 'connection'
+  | 'adventure'
+  | 'comfort'
+  | 'independence'
+  | 'generosity'
+  | 'curiosity'
+  | 'novelty'
+  | 'stability'
+
+export type StoryArtwork = {
+  key: string
+  description: string
+  symbol: string
+  caption: string
+}
+
+export type StoryCondition = {
+  flag: StoryFlag
+  minimum: number
+  text: string
+}
+
+export type StoryQuestionDefinition = {
+  key: string
+  category: string
+  note?: string
+}
+
+export type StoryChoice = {
   id: string
   label: string
-  emoji: string
-  reaction: string
-  tags: string[]
+  detail: string
+  icon: string
+  nextScene: string
+  flags?: Partial<Record<StoryFlag, number>>
+  signals?: Partial<Record<StorySignal, number>>
 }
 
-export type Challenge = {
+export type StoryScene = {
   id: string
+  chapter: number
+  chapterTitle: string
+  kind: 'story' | 'event' | 'question' | 'ending'
+  kicker: string
   title: string
-  subtitle: string
-  prompt: string
-  emoji: string
-  color: string
-  choices: Choice[]
+  paragraphs: string[]
+  atmosphere: string
+  artwork: StoryArtwork
+  choices: StoryChoice[]
+  conditionalParagraphs?: StoryCondition[]
+  question?: StoryQuestionDefinition
+  endingTitle?: string
+  endingSubtitle?: string
 }
 
-export type GameSave = {
-  name: string
-  answers: Record<string, string>
+export type StoryHistoryEntry = {
+  sceneId: string
+  choiceId: string
+}
+
+export type StorySave = {
+  currentSceneId: string
+  history: StoryHistoryEntry[]
+  flags: Record<StoryFlag, number>
+  signals: Partial<Record<StorySignal, number>>
   completed: boolean
+  endingSceneId?: string
 }
-
-export type Discovery = [tag: string, count: number]
