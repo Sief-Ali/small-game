@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ArrowLeft, ArrowRight, Check, RotateCcw, Sparkles, Volume2, VolumeX } from 'lucide-react'
+import { ArrowLeft, ArrowRight, RotateCcw, Sparkles } from 'lucide-react'
 import { challenges, tagLabels } from './game'
 
 type Save = { name: string; answers: Record<string, string>; completed: boolean }
@@ -18,7 +18,6 @@ export default function App() {
   const [screen, setScreen] = useState<'home' | 'game' | 'result'>('home')
   const [index, setIndex] = useState(0)
   const [showReaction, setShowReaction] = useState(false)
-  const [sound, setSound] = useState(false)
 
   useEffect(() => { localStorage.setItem(SAVE_KEY, JSON.stringify(save)) }, [save])
 
@@ -69,9 +68,6 @@ export default function App() {
         <a className="brand" href="#" onClick={e => { e.preventDefault(); setScreen('home') }}>
           <span className="brand-mark">✳</span> choose your chaos
         </a>
-        <button className="icon-button" aria-label={sound ? 'Mute sound' : 'Enable sound'} onClick={() => setSound(!sound)}>
-          {sound ? <Volume2 size={18}/> : <VolumeX size={18}/>}
-        </button>
       </header>
 
       {screen === 'home' && (
