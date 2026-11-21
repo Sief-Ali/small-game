@@ -1,0 +1,231 @@
+{
+  "storyTitle": "المدينة التي نسيت الفجر",
+  "acts": {
+    "act-1": {
+      "title": "الفصل الأول: الشفق الدائم",
+      "chapters": [
+        "ch-1",
+        "ch-2",
+        "ch-3"
+      ]
+    },
+    "act-2": {
+      "title": "الفصل الثاني: أفق الساعة الكونية",
+      "chapters": [
+        "ch-4",
+        "ch-5"
+      ]
+    },
+    "act-3": {
+      "title": "الفصل الثالث: سيد الشعاع الأول",
+      "chapters": [
+        "ch-6",
+        "ch-7"
+      ]
+    }
+  },
+  "chapters": {
+    "ch-1": {
+      "actId": "act-1",
+      "title": "المرحلة ١: فوانيس شارع الحديد"
+    },
+    "ch-2": {
+      "actId": "act-1",
+      "title": "المرحلة ٢: المسبك تحت الجرس"
+    },
+    "ch-3": {
+      "actId": "act-1",
+      "title": "المرحلة ٣: همسات في ممر البخار"
+    },
+    "ch-4": {
+      "actId": "act-2",
+      "title": "المرحلة ٤: قبو المرصد"
+    },
+    "ch-5": {
+      "actId": "act-2",
+      "title": "المرحلة ٥: زجاج ونحاس ميريديان"
+    },
+    "ch-6": {
+      "actId": "act-3",
+      "title": "المرحلة ٦: ساحة المزولة الشمسية"
+    },
+    "ch-7": {
+      "actId": "act-3",
+      "title": "المرحلة ٧: الضوء الأول أو الليل السرمدي"
+    }
+  },
+  "quests": {
+    "q-find-pendulum": {
+      "title": "إصلاح البندول الشمسي",
+      "description": "اعثر على البندول النحاسي المفقود وأعد ضبط معايرته لمرصد ميريديان.",
+      "hidden": false,
+      "objectives": [
+        {
+          "id": "obj-search-market",
+          "text": "فتّش أكشاك السوق الليلي بحثًا عن خيوط",
+          "count": 1
+        },
+        {
+          "id": "obj-recover-pendulum",
+          "text": "استعد قلب البندول الشمسي من المسبك",
+          "count": 1
+        },
+        {
+          "id": "obj-align-escapement",
+          "text": "عاير حلقات الإفلات في المرصد",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "score": 40,
+        "item": "ختم معايرة البندول"
+      }
+    },
+    "q-keep-lanterns": {
+      "title": "حراس شعلة الفحم",
+      "description": "احمِ إنارة الأحياء السفلى أثناء التحولات الميكانيكية حتى لا يسود الهلع.",
+      "hidden": true,
+      "objectives": [
+        {
+          "id": "obj-oil-ledger",
+          "text": "احصل على سجل تقنين زيت الأحياء السفلى",
+          "count": 1
+        },
+        {
+          "id": "obj-stabilize-feeder",
+          "text": "ثبّت خط تغذية الفحم والغاز الاحتياطي",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "score": 30,
+        "item": "تصريح مصابيح النقابة"
+      }
+    },
+    "q-unseal-chronometer": {
+      "title": "ساعة المؤسسين المنسية",
+      "description": "اجمع شيفرة الفلك ما قبل الشفق المخبأة داخل أقدم ساعات المدينة.",
+      "hidden": true,
+      "objectives": [
+        {
+          "id": "obj-cipher-key",
+          "text": "احصل على مفتاح التشفير النحاسي",
+          "count": 1
+        },
+        {
+          "id": "obj-archive-log",
+          "text": "اقرأ سجل أرشيف المرصد الخفي",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "score": 45,
+        "item": "ساعة المؤسسين الفلكية"
+      }
+    },
+    "q-bell-pact": {
+      "title": "ترنيمة الأجراس الاثني عشر",
+      "description": "وفّق بين سعاة الحرس وقارعي الأجراس قبل الدقة الأخيرة.",
+      "hidden": false,
+      "objectives": [
+        {
+          "id": "obj-bell-parley",
+          "text": "تحدث مع كبير قارعي الأجراس عند البرج",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "score": 25
+      }
+    }
+  },
+  "achievements": {
+    "ach-first-spark": {
+      "title": "الشرارة الأولى",
+      "description": "تتبّع أول خيط نحو البندول الشمسي في شارع الحديد.",
+      "hidden": false,
+      "category": "exploration",
+      "scope": "playthrough"
+    },
+    "ach-iron-diplomat": {
+      "title": "أصوات في الضباب",
+      "description": "اكسب ثقة ملموسة من سعاة فيسبر أو نقابة المسبك.",
+      "hidden": false,
+      "category": "relationships",
+      "scope": "playthrough"
+    },
+    "ach-unbroken-lamp": {
+      "title": "لا مصباح ينطفئ",
+      "description": "أبقِ الأحياء السفلى مضاءة أثناء استعادة الزخم الميكانيكي.",
+      "hidden": false,
+      "category": "quests",
+      "scope": "playthrough"
+    },
+    "ach-shadow-archivist": {
+      "title": "أمين أرشيف الظلال",
+      "description": "اكشف حجرة الأرشيف الخفية وسجلاتها الفلكية ما قبل الشفق.",
+      "hidden": true,
+      "category": "secrets",
+      "scope": "permanent"
+    },
+    "ach-dawn-bringer": {
+      "title": "جالب الفجر",
+      "description": "أعد ضوء الصباح الحقيقي إلى المدينة.",
+      "hidden": false,
+      "category": "endings",
+      "scope": "permanent"
+    },
+    "ach-master-of-twilight": {
+      "title": "حارس الساعة الكهرمانية",
+      "description": "أنهِ جولة تحفظ أو تتقن ساعة الشفق الميكانيكية للمدينة.",
+      "hidden": false,
+      "category": "endings",
+      "scope": "permanent"
+    }
+  },
+  "checkpoints": {
+    "cp-iron-street": {
+      "label": "مفترق شارع الحديد",
+      "actId": "act-1",
+      "chapterId": "ch-1"
+    },
+    "cp-foundry-floor": {
+      "label": "سطح أفران المسبك العميق",
+      "actId": "act-1",
+      "chapterId": "ch-2"
+    },
+    "cp-vault-threshold": {
+      "label": "عتبة قبو المرصد",
+      "actId": "act-2",
+      "chapterId": "ch-4"
+    },
+    "cp-meridian-apex": {
+      "label": "ذروة قبة ميريديان",
+      "actId": "act-2",
+      "chapterId": "ch-5"
+    },
+    "cp-sundial-court": {
+      "label": "حرم ساحة المزولة الشمسية",
+      "actId": "act-3",
+      "chapterId": "ch-6"
+    }
+  },
+  "endings": {
+    "end-true-dawn": {
+      "title": "حين تتذكر السماء",
+      "type": "good"
+    },
+    "end-eternal-dusk": {
+      "title": "الشفق المذهّب",
+      "type": "neutral"
+    },
+    "end-dark-archive": {
+      "title": "قبو الساعات الصامتة",
+      "type": "secret"
+    },
+    "end-ash-eclipse": {
+      "title": "رماد تحت الجرس",
+      "type": "tragic"
+    }
+  }
+}
