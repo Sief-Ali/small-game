@@ -1,8 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
-import { START_SCENE_ID, storyScenes, TOTAL_CHAPTERS } from '../../../../stories/the-city-that-forgot-dawn/en/story'
-import { getCurrentScene, getStoryProgress, transitionStory, validateStoryDefinition } from '../../story-engine/engine'
+import {
+  getStoryProgress,
+  transitionStory,
+  validateStoryDefinition
+} from '../../story-engine/engine'
+import { storyDefinition } from '../../../../stories/the-city-that-forgot-dawn/en/story'
 import { createEmptyStorySave, readStorySave, writeStorySave } from '../lib/storage'
-import type { StorySave } from '../types'
+import type { StorySave } from '../../story-engine/types'
 
 type Screen = 'home' | 'story'
 
@@ -14,11 +18,11 @@ export function useStoryGame() {
     writeStorySave(save)
   }, [save])
 
-  const story = useMemo(
-    () => ({ startSceneId: START_SCENE_ID, totalChapters: TOTAL_CHAPTERS, scenes: storyScenes }),
+  const validationIssues = useMemo(
+    () => validateStoryDefinition(storyDefinition),
     []
   )
-  const validationIssues = useMemo(() => validateStoryDefinition(story), [story])
+
   useEffect(() => {
     if (validationIssues.length > 0) {
       console.error('Story definition validation failed:', validationIssues)
@@ -26,17 +30,19 @@ export function useStoryGame() {
   }, [validationIssues])
 
   const scene = useMemo(
-    () => getCurrentScene(story, save.currentSceneId),
-    [story, save.currentSceneId]
+    () => storyDefinition.passages[save.currentSceneId] ??
+      storyDefinition.passages[storyDefinition.startPassageId],
+    [save.currentSceneId]
   )
 
   const hasProgress = save.history.length > 0 || save.completed
-  const progress = getStoryProgress(scene, story.totalChapters)
+  const progress = getStoryProgress(scene, storyDefinition.totalChapters)
 
   function choose(choiceId: string) {
     setSave(current => {
-      const currentScene = getCurrentScene(story, current.currentSceneId)
-      return transitionStory(story, current, currentScene, choiceId) ?? current
+      const currentScene = storyDefinition.passages[current.currentSceneId]
+      if (!currentScene) return current
+      return transitionStory(storyDefinition, current, currentScene, choiceId) ?? current
     })
   }
 
@@ -54,6 +60,7 @@ export function useStoryGame() {
   }
 
   return {
+    story: storyDefinition,
     save,
     scene,
     screen,

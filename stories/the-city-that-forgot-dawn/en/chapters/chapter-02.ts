@@ -1,48 +1,236 @@
-import type { StoryScene } from '../../../../src/modules/story-engine/types'
-import { flags, signals } from '../helpers'
+import type { StoryPassageSource } from '../../../../src/modules/story-engine/types'
 
-export const chapter02: Record<string, StoryScene> = {
-  keeper_truth: {
-    id: 'keeper_truth', chapter: 2, chapterTitle: 'Chapter II · The Clue',
-    kind: 'story', kicker: 'A secret kept for too long', title: 'Mara remembers the morning',
-    paragraphs: [
-      'Mara unlocks a room behind the station clock. Dusty timetables cover the walls. Every single one ends on the same date: the Night of the Golden Festival.',
-      '“The people of Nera were afraid that their happiest day would end,” she tells you. “So the old Queen asked the clockmaker to keep that evening forever. The spell worked a little too well.”',
-      'The lantern gives a small pulse. Somewhere beneath the city, something answers.'
+export const chapter02: Record<string, StoryPassageSource> = {
+  "Act1_Ch2_01_FoundryEntry": {
+    "id": "Act1_Ch2_01_FoundryEntry",
+    "chapterId": "ch-2",
+    "kind": "narrative",
+    "backgroundKey": "bg-foundry-floor",
+    "paragraphs": [
+      "Inside the foundry, slag channels glow like veins of molten copper beneath vaulted iron ribs. Suspended over the main casting pit hangs the Solar Pendulum—its bronze bob scarred by decades of heat."
     ],
-    atmosphere: 'archive',
-    artwork: { key: 'station-keepers-archive', description: 'A secret railway archive filled with old timetables, handwritten letters and a giant stopped clock.', symbol: '🕰️', caption: 'The records room · sealed since the festival' },
-    choices: [
-      { id: 'read-letter', label: 'Read the letter the Queen left behind.', detail: 'You want to understand why the spell was made.', icon: '✉️', nextScene: 'archive_memory', flags: flags(['curiosity', 1], ['care', 1]), signals: signals(['curiosity', 1], ['comfort', 1]) },
-      { id: 'study-map', label: 'Study the clockmaker’s strange mechanism map.', detail: 'A practical answer might be hiding in the gears.', icon: '🗺️', nextScene: 'clockwork_key', flags: flags(['curiosity', 1], ['courage', 1]), signals: signals(['independence', 1], ['novelty', 1]) }
-    ]
+    "choices": [
+      {
+        "id": "go-Act1_Ch2_02_PendulumGantry",
+        "label": "Approach the pendulum gantry",
+        "nextPassage": "Act1_Ch2_02_PendulumGantry"
+      }
+    ],
+    "effects": [
+      {
+        "type": "chapter-started",
+        "actId": "act-1",
+        "chapterId": "ch-2"
+      }
+    ],
+    "meaningful": false
   },
-  lost_star: {
-    id: 'lost_star', chapter: 2, chapterTitle: 'Chapter II · The Clue',
-    kind: 'story', kicker: 'A small problem, a big feeling', title: 'Lina’s missing star',
-    paragraphs: [
-      'The child introduces herself as Lina. She has been looking for a little glass star that fell from her mother’s festival necklace. It is not expensive, she explains. It is just the last thing her mother made before leaving Nera to find the sunrise.',
-      'The lantern glows when Lina speaks. For a moment, its golden light looks almost like a tiny sunrise.'
+  "Act1_Ch2_02_PendulumGantry": {
+    "id": "Act1_Ch2_02_PendulumGantry",
+    "chapterId": "ch-2",
+    "kind": "choice",
+    "backgroundKey": "bg-foundry-floor",
+    "paragraphs": [
+      "A foreman's whistle blows twice. Two Syndicate riggers are preparing to weld the pendulum assembly permanently into the furnace cradle to boost lamp pressure for the night shift.",
+      "How do you recover the Solar Pendulum Core?"
     ],
-    atmosphere: 'market',
-    artwork: { key: 'nera-lantern-market', description: 'A quiet night market with paper lanterns, little stalls, ribbons and a child holding an empty necklace chain.', symbol: '🏮', caption: 'The lantern market · where every light has a story' },
-    choices: [
-      { id: 'search-market', label: 'Search every little market stall with Lina.', detail: 'There is no rush when someone matters.', icon: '🔎', nextScene: 'market_song', flags: flags(['kindness', 1], ['community', 1]), signals: signals(['connection', 1], ['comfort', 1]) },
-      { id: 'share-light', label: 'Lend Lina your lantern and follow the river.', detail: 'The light might help you find what the market cannot.', icon: '💛', nextScene: 'river_bridge', flags: flags(['kindness', 1], ['courage', 1]), signals: signals(['generosity', 1], ['adventure', 1]) }
-    ]
+    "choices": [
+      {
+        "id": "opt-negotiate-riggers",
+        "label": "Negotiate with the riggers using your knowledge of the city's lamps",
+        "nextPassage": "Act1_Ch2_03_NegotiateRiggers"
+      },
+      {
+        "id": "opt-override-winch",
+        "label": "Override the gantry winch from the control catwalk",
+        "nextPassage": "Act1_Ch2_04_OverrideWinch"
+      },
+      {
+        "id": "opt-trade-ledger",
+        "label": "Offer a guaranteed oil allocation from the ledger in exchange for the core",
+        "nextPassage": "Act1_Ch2_05_TradeLedger",
+        "condition": {
+          "type": "inventory",
+          "item": "Oil Ration Ledger",
+          "contains": true
+        }
+      }
+    ],
+    "effects": [],
+    "meaningful": true,
+    "choiceGroupId": "choice-foundry-recovery"
   },
-  rooftop_run: {
-    id: 'rooftop_run', chapter: 2, chapterTitle: 'Chapter II · The Clue',
-    kind: 'story', kicker: 'Above the sleepy streets', title: 'A shortcut among the stars',
-    paragraphs: [
-      'You climb a narrow staircase and emerge above the rooftops. The blue light is not a person at all, but a tiny bird made of sparks. It circles the old bell tower, then darts toward the highest part of the city.',
-      'Below you, Nera looks peaceful. Up here, you can see a thin line of gold behind the mountains. Morning is still out there. It has simply been held back.'
+  "Act1_Ch2_03_NegotiateRiggers": {
+    "id": "Act1_Ch2_03_NegotiateRiggers",
+    "chapterId": "ch-2",
+    "kind": "event",
+    "backgroundKey": "bg-foundry-floor",
+    "paragraphs": [
+      "You show the riggers that over-welding the pendulum risks snapping the main drive shaft. Grumbling, they uncouple the Solar Pendulum Core and step back as the hoist lifts it clear."
     ],
-    atmosphere: 'rooftops',
-    artwork: { key: 'nera-rooftops-comet-bird', description: 'A sweeping view over blue rooftops and chimneys, with a tiny glowing bird flying toward a distant bell tower.', symbol: '🕊️', caption: 'Above the rooftops · follow the little light' },
-    choices: [
-      { id: 'cross-glass', label: 'Follow the bird across the old glass roof.', detail: 'It looks fragile, but the light is almost within reach.', icon: '✨', nextScene: 'glass_roof', flags: flags(['courage', 1], ['wonder', 1]), signals: signals(['adventure', 1], ['novelty', 1]) },
-      { id: 'ring-bell', label: 'Climb the bell tower and ring its silent bell.', detail: 'Maybe the whole city needs to hear something again.', icon: '🔔', nextScene: 'bellkeeper', flags: flags(['community', 1], ['care', 1]), signals: signals(['connection', 1], ['stability', 1]) }
-    ]
+    "choices": [
+      {
+        "id": "go-Act1_Ch2_06_Checkpoint",
+        "label": "Reach the Deep Foundry Furnace Deck",
+        "nextPassage": "Act1_Ch2_06_Checkpoint"
+      }
+    ],
+    "effects": [
+      {
+        "type": "increment-stat",
+        "key": "dawnProgress",
+        "amount": 15
+      },
+      {
+        "type": "increment-stat",
+        "key": "trustSyndicate",
+        "amount": 10
+      },
+      {
+        "type": "add-item",
+        "item": "Solar Pendulum Core"
+      },
+      {
+        "type": "quest-objective-updated",
+        "questId": "q-find-pendulum",
+        "objectiveId": "obj-recover-pendulum",
+        "delta": 1
+      },
+      {
+        "type": "relationship-changed",
+        "character": "syndicate",
+        "delta": 10
+      }
+    ],
+    "meaningful": false
+  },
+  "Act1_Ch2_04_OverrideWinch": {
+    "id": "Act1_Ch2_04_OverrideWinch",
+    "chapterId": "ch-2",
+    "kind": "event",
+    "backgroundKey": "bg-foundry-alley",
+    "paragraphs": [
+      "You throw the emergency release lever on the catwalk. The winch clanks free and hauls up the Solar Pendulum Core before the riggers can lock the brake."
+    ],
+    "choices": [
+      {
+        "id": "go-Act1_Ch2_06_Checkpoint",
+        "label": "Reach the Deep Foundry Furnace Deck",
+        "nextPassage": "Act1_Ch2_06_Checkpoint"
+      }
+    ],
+    "effects": [
+      {
+        "type": "increment-stat",
+        "key": "dawnProgress",
+        "amount": 10
+      },
+      {
+        "type": "increment-stat",
+        "key": "trustSyndicate",
+        "amount": -15
+      },
+      {
+        "type": "add-item",
+        "item": "Solar Pendulum Core"
+      },
+      {
+        "type": "quest-objective-updated",
+        "questId": "q-find-pendulum",
+        "objectiveId": "obj-recover-pendulum",
+        "delta": 1
+      },
+      {
+        "type": "relationship-changed",
+        "character": "syndicate",
+        "delta": -15
+      }
+    ],
+    "meaningful": false
+  },
+  "Act1_Ch2_05_TradeLedger": {
+    "id": "Act1_Ch2_05_TradeLedger",
+    "chapterId": "ch-2",
+    "kind": "event",
+    "backgroundKey": "bg-reserve-power",
+    "paragraphs": [
+      "Seeing exact reserve figures from the ration ledger, the riggers realize the lower lamps won't go dark if they release the core cleanly. They hand it over without a struggle."
+    ],
+    "choices": [
+      {
+        "id": "go-Act1_Ch2_06_Checkpoint",
+        "label": "Reach the Deep Foundry Furnace Deck",
+        "nextPassage": "Act1_Ch2_06_Checkpoint"
+      }
+    ],
+    "effects": [
+      {
+        "type": "set-flag",
+        "key": "foundrySabotageAvoided",
+        "value": true
+      },
+      {
+        "type": "increment-stat",
+        "key": "dawnProgress",
+        "amount": 20
+      },
+      {
+        "type": "increment-stat",
+        "key": "trustSyndicate",
+        "amount": 15
+      },
+      {
+        "type": "add-item",
+        "item": "Solar Pendulum Core"
+      },
+      {
+        "type": "quest-objective-updated",
+        "questId": "q-find-pendulum",
+        "objectiveId": "obj-recover-pendulum",
+        "delta": 1
+      },
+      {
+        "type": "quest-objective-updated",
+        "questId": "q-keep-lanterns",
+        "objectiveId": "obj-stabilize-feeder",
+        "delta": 1
+      },
+      {
+        "type": "relationship-changed",
+        "character": "syndicate",
+        "delta": 15
+      }
+    ],
+    "meaningful": false
+  },
+  "Act1_Ch2_06_Checkpoint": {
+    "id": "Act1_Ch2_06_Checkpoint",
+    "chapterId": "ch-2",
+    "kind": "checkpoint",
+    "backgroundKey": "bg-foundry-floor",
+    "paragraphs": [
+      "With the Solar Pendulum Core secured, the roar of the foundry fades behind heavy blast doors leading into the city's steam conduits."
+    ],
+    "choices": [
+      {
+        "id": "go-Act1_Ch3_01_ConduitStart",
+        "label": "Enter Chapter 3: Whispers in the Steam Conduit",
+        "nextPassage": "Act1_Ch3_01_ConduitStart"
+      }
+    ],
+    "effects": [
+      {
+        "type": "checkpoint-reached",
+        "checkpointId": "cp-foundry-floor",
+        "label": "Deep Foundry Furnace Deck"
+      },
+      {
+        "type": "chapter-completed",
+        "actId": "act-1",
+        "chapterId": "ch-2"
+      }
+    ],
+    "meaningful": false,
+    "checkpointId": "cp-foundry-floor"
   }
 }

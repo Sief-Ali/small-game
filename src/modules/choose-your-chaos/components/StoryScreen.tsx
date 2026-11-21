@@ -1,12 +1,14 @@
 import { ArrowRight, Home, RotateCcw, Sparkles } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import type { StoryFlag, StoryScene } from '../types'
+import { getAvailableChoices } from '../../story-engine/engine'
+import type { StoryDefinition, StoryPassage, StorySave } from '../../story-engine/types'
 import { LanguageToggle } from './LanguageToggle'
 import { SceneArtwork } from './SceneArtwork'
 
 type StoryScreenProps = {
-  scene: StoryScene
-  flags: Record<StoryFlag, number>
+  story: StoryDefinition
+  scene: StoryPassage
+  save: StorySave
   progress: number
   onChoose: (choiceId: string) => void
   onHome: () => void
@@ -14,21 +16,48 @@ type StoryScreenProps = {
 }
 
 export function StoryScreen({
-  scene, flags, progress, onChoose, onHome, onRestart
+  story, scene, save, progress, onChoose, onHome, onRestart
 }: StoryScreenProps) {
   const { t } = useTranslation()
   const isEnding = scene.kind === 'ending'
-  const sceneKey = `story.${scene.id}`
+  const passageKey = `story.passages.${scene.id}`
+  const chapter = story.chapters.find(item => item.id === scene.chapterId)
+  const act = story.acts.find(item => item.id === scene.actId)
+  const ending = scene.endingId
+    ? story.endings.find(item => item.id === scene.endingId)
+    : undefined
+
+  const chapterTitle = t(`story.meta.chapters.${scene.chapterId}.title`, {
+    defaultValue: chapter?.title ?? scene.title
+  })
+  const actTitle = t(`story.meta.acts.${scene.actId}.title`, {
+    defaultValue: act?.title ?? scene.kicker
+  })
+  const endingTitle = ending
+    ? t(`story.meta.endings.${ending.id}.title`, { defaultValue: ending.title })
+    : ''
+
   const translate = (key: string, fallback: string) =>
     t(key, { defaultValue: fallback })
 
-  const visibleMemories = (scene.conditionalParagraphs || [])
-    .map((memory, index) => ({
-      ...memory,
-      index,
-      translated: translate(`${sceneKey}.conditionalParagraphs.${index}`, memory.text)
-    }))
-    .filter(memory => flags[memory.flag] >= memory.minimum)
+  const interpolate = (value: string) =>
+    value.replace(/\{\{stats\.([a-zA-Z0-9_]+)\}\}/g, (_, key: string) =>
+      String(save.stats[key] ?? 0)
+    )
+
+  const paragraphs = scene.paragraphs.map((paragraph, index) =>
+    interpolate(translate(`${passageKey}.body.${index}`, paragraph))
+  )
+  const choices = getAvailableChoices(scene, save)
+  const completedQuests = Object.values(save.quests).filter(
+    quest => quest.status === 'completed'
+  ).length
+  const totalQuests = story.quests.length
+  const choiceHeading = scene.kind === 'choice'
+    ? t('ui.whatDoYouDo')
+    : scene.kind === 'checkpoint'
+      ? t('ui.checkpointReached')
+      : t('ui.storyMovesOn')
 
   return (
     <section className={`story-screen atmosphere-${scene.atmosphere} ${isEnding ? 'is-ending' : ''}`}>
@@ -38,12 +67,18 @@ export function StoryScreen({
         </button>
         <div className="chapter-progress">
           <div className="chapter-meta">
-            <span>{translate(`${sceneKey}.chapterTitle`, scene.chapterTitle)}</span>
+            <span>{chapterTitle}</span>
             <span>{isEnding ? t('ui.complete') : t('ui.chapter', { chapter: scene.chapter })}</span>
           </div>
           <div className="chapter-track"><span style={{ width: `${progress}%` }}/></div>
         </div>
         <LanguageToggle/>
+      </div>
+
+      <div className="story-state-strip" aria-label={t('ui.storyStatus')}>
+        <span><strong>{save.stats.dawnProgress ?? 0}%</strong> {t('ui.dawnProgress')}</span>
+        <span><strong>{save.inventory.length}</strong> {t('ui.inventoryCount')}</span>
+        <span><strong>{completedQuests}/{totalQuests}</strong> {t('ui.questsComplete')}</span>
       </div>
 
       <div className="story-layout">
@@ -53,61 +88,53 @@ export function StoryScreen({
           <article className="story-panel">
             <div className="story-kicker">
               <span className="kicker-dot"/>
-              {isEnding
-                ? translate(`${sceneKey}.endingSubtitle`, scene.endingSubtitle || '')
-                : translate(`${sceneKey}.kicker`, scene.kicker)}
+              {actTitle}
             </div>
             {isEnding ? (
               <>
                 <p className="ending-overline">{t('ui.endingKicker')}</p>
-                <h1 className="story-title">{translate(`${sceneKey}.endingTitle`, scene.endingTitle || scene.title)}</h1>
+                <h1 className="story-title">{endingTitle || chapterTitle}</h1>
               </>
             ) : (
-              <h1 className="story-title">{translate(`${sceneKey}.title`, scene.title)}</h1>
+              <h1 className="story-title">{chapterTitle}</h1>
             )}
 
-            {scene.question && (
-              <div className="embedded-question">
-                <span className="question-label">{t('ui.questionLabel')}</span>
-                <p>{translate(`${sceneKey}.question.prompt`, scene.question.prompt)}</p>
-                {scene.question.note && <small>{translate(`${sceneKey}.question.note`, scene.question.note)}</small>}
-              </div>
+            {scene.kind === 'checkpoint' && (
+              <p className="passage-type-label">{t('ui.checkpointLabel')}</p>
             )}
 
             <div className="story-copy">
-              {scene.paragraphs.map((paragraph, index) => (
-                <p key={index}>{translate(`${sceneKey}.paragraphs.${index}`, paragraph)}</p>
-              ))}
-              {visibleMemories.map(memory => (
-                <p className="memory-line" key={`${memory.flag}-${memory.index}`}>
-                  <span>✦</span>{memory.translated}
-                </p>
+              {paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
               ))}
             </div>
           </article>
 
           {!isEnding ? (
-            <div className="choice-panel">
+            <div className="choice-panel" data-choice-group={scene.choiceGroupId}>
               <div className="choice-heading">
-                <span>{scene.kind === 'event'
-                  ? t('ui.storyMovesOn')
-                  : scene.kind === 'question'
-                    ? t('ui.littleQuestion')
-                    : t('ui.whatDoYouDo')}</span>
+                <span>{choiceHeading}</span>
                 <Sparkles size={15}/>
               </div>
               <div className="story-choices">
-                {scene.choices.map((choice, index) => (
-                  <button className="story-choice" key={choice.id} onClick={() => onChoose(choice.id)}>
-                    <span className="choice-icon">{choice.icon}</span>
+                {choices.map((choice, index) => (
+                  <button
+                    className="story-choice"
+                    key={choice.id}
+                    onClick={() => onChoose(choice.id)}
+                  >
+                    <span className="choice-icon">{String(index + 1).padStart(2, '0')}</span>
                     <span className="choice-content">
-                      <span className="choice-label">{translate(`${sceneKey}.choices.${choice.id}.label`, choice.label)}</span>
-                      <span className="choice-detail">{translate(`${sceneKey}.choices.${choice.id}.detail`, choice.detail)}</span>
+                      <span className="choice-label">
+                        {translate(`${passageKey}.choices.${choice.id}.label`, choice.label)}
+                      </span>
                     </span>
                     <span className="choice-arrow"><ArrowRight size={17}/></span>
-                    <span className="choice-number">0{index + 1}</span>
                   </button>
                 ))}
+                {choices.length === 0 && (
+                  <p className="no-choices-note">{t('ui.noChoicesAvailable')}</p>
+                )}
               </div>
             </div>
           ) : (
