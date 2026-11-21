@@ -1,0 +1,22 @@
+{
+  "id": "the-city-that-forgot-dawn",
+  "title": "The City That Forgot Dawn",
+  "version": "1.0.0",
+  "defaultLocale": "en",
+  "locales": [
+    "en",
+    "ar"
+  ],
+  "startSceneId": "arrival",
+  "totalChapters": 4,
+  "chapterFiles": [
+    "en/chapters/chapter-01.ts",
+    "en/chapters/chapter-02.ts",
+    "en/chapters/chapter-03.ts",
+    "en/chapters/chapter-04.ts"
+  ],
+  "translations": {
+    "en": "../../src/modules/choose-your-chaos/i18n/locales/en.json",
+    "ar": "../../src/modules/choose-your-chaos/i18n/locales/ar.json"
+  }
+}
