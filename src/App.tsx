@@ -138,7 +138,7 @@ export default function App() {
             <p className="disclaimer">Based on game choices, not actual science. Please do not cite this in court.</p>
           </div>
           <div className="result-actions">
-            <button className="primary-button" onClick={() => { setIndex(0); setScreen('game'); setShowReaction(false) }}>Play again <RotateCcw size={17}/></button>
+            <button className="primary-button" onClick={restart}>Play again <RotateCcw size={17}/></button>
             <button className="secondary-button" onClick={() => setScreen('home')}>Back home</button>
           </div>
           <p className="tiny-note">Your choices are saved on this device.</p>
